@@ -1,26 +1,32 @@
-# Healthcare Diabetes Decision Support System
+# 🩺 Healthcare Diabetes Decision Support System
 
-A machine learning-based Healthcare Decision Support System for diabetes risk prediction and healthcare analytics.
+A machine learning-based Healthcare Decision Support System (DSS) for diabetes risk prediction and healthcare analytics.
 
-## Project Overview
+## 🚀 Live Application
 
-This project develops a machine learning framework for early diabetes-risk prediction using healthcare indicators. Multiple machine learning algorithms are evaluated and compared, followed by a Decision Support System (DSS) layer.
+👉 [Open Healthcare Diabetes DSS](https://healthcare-diabetes-dss-cd9m4afdhd5vzjnpxzn8mp.streamlit.app/)
 
-The final model uses CatBoost for diabetes prediction.
+## 📌 Project Overview
 
-## Objectives
+This project develops a machine learning framework for diabetes-risk prediction using healthcare indicators.
+
+Multiple machine learning algorithms are evaluated and compared, followed by a Decision Support System (DSS) layer that converts prediction probabilities into interpretable risk categories.
+
+The final selected model is **CatBoost**.
+
+## 🎯 Objectives
 
 1. Analyze healthcare indicators and identify important factors associated with diabetes risk using exploratory and statistical analytics.
 
-2. Develop and compare machine learning models for early diabetes-risk prediction using appropriate preprocessing and evaluation metrics.
+2. Develop and compare machine learning models for diabetes-risk prediction using appropriate preprocessing and evaluation metrics.
 
 3. Design a Healthcare Decision Support System layer that converts model predictions into interpretable risk categories and analytics outputs.
 
-## Dataset
+## 📊 Dataset
 
-The project uses the Pima Indians Diabetes Dataset.
+The project uses the **Pima Indians Diabetes Dataset**.
 
-### Features
+### Input Features
 
 - Pregnancies
 - Glucose
@@ -33,18 +39,26 @@ The project uses the Pima Indians Diabetes Dataset.
 
 ### Target
 
-- 0 = No Diabetes
-- 1 = Diabetes
+- `0` → No Diabetes
+- `1` → Diabetes
 
-## Data Preprocessing
+## 🔧 Data Preprocessing
 
-Healthcare indicator values recorded as zero for Glucose, BloodPressure, SkinThickness, Insulin, and BMI were treated as missing values.
+Healthcare indicator values recorded as zero for the following variables were treated as missing values:
 
-Missing values were replaced using median imputation.
+- Glucose
+- BloodPressure
+- SkinThickness
+- Insulin
+- BMI
 
-The dataset was divided into training and testing sets using an 80:20 stratified split.
+Median imputation was then applied.
 
-## Machine Learning Models
+The dataset was divided using an **80:20 stratified train-test split**.
+
+## 🤖 Machine Learning Models
+
+The following models were evaluated:
 
 | Model | Accuracy | Precision | Recall | F1-Score | ROC-AUC |
 |---|---:|---:|---:|---:|---:|
@@ -53,53 +67,64 @@ The dataset was divided into training and testing sets using an 80:20 stratified
 | Extra Trees | 85.06% | 79.25% | 77.78% | 78.50% | 0.9309 |
 | XGBoost | 88.31% | 82.14% | 85.19% | 83.64% | 0.9494 |
 | LightGBM | 87.66% | 83.02% | 81.48% | 82.24% | 0.9524 |
-| CatBoost | 88.96% | 83.64% | 85.19% | 84.40% | 0.9524 |
+| **CatBoost** | **88.96%** | **83.64%** | **85.19%** | **84.40%** | **0.9524** |
 
-## Final Model
+## 🏆 Final Model
 
-The final selected model is CatBoost.
+**CatBoost** was selected as the final model for the deployed DSS prototype.
 
-### Test Set Performance
+### Test Performance
 
-- Accuracy: 88.96%
-- Precision: 83.64%
-- Recall: 85.19%
-- F1-Score: 84.40%
-- ROC-AUC: 0.9524
+- Accuracy: **88.96%**
+- Precision: **83.64%**
+- Recall: **85.19%**
+- F1-Score: **84.40%**
+- ROC-AUC: **0.9524**
 
 ### Confusion Matrix
 
-- True Negative: 91
-- False Positive: 9
-- False Negative: 8
-- True Positive: 46
+| | Predicted No Diabetes | Predicted Diabetes |
+|---|---:|---:|
+| Actual No Diabetes | 91 | 9 |
+| Actual Diabetes | 8 | 46 |
 
-## Decision Support System
+## 🧠 Decision Support System
 
-The DSS converts predicted diabetes probability into three prototype risk categories:
+The application converts the predicted diabetes probability into three prototype risk categories:
 
-- Low Risk: probability < 0.30
-- Moderate Risk: probability 0.30 to < 0.60
-- High Risk: probability >= 0.60
+| Probability | Risk Category |
+|---|---|
+| `< 0.30` | Low Risk |
+| `0.30 – < 0.60` | Moderate Risk |
+| `≥ 0.60` | High Risk |
 
-These thresholds are project-design thresholds for an academic prototype and are not clinically validated.
+These thresholds are **project-design thresholds for an academic prototype and are not clinically validated**.
 
-## Explainability
+## 🔍 Explainability
 
-CatBoost feature importance and SHAP analysis are used to understand the contribution of healthcare indicators to model predictions.
+The project uses:
 
-## Streamlit Application
+- CatBoost feature importance
+- SHAP analysis
 
-The project includes a Streamlit dashboard where users can enter healthcare indicators and receive:
+to examine the contribution of healthcare indicators to model predictions.
+
+## 💻 Streamlit Application
+
+The deployed application allows users to enter healthcare indicators and obtain:
 
 - Diabetes probability
-- Prediction
+- Diabetes prediction
 - Prototype risk category
 - Input summary
 - Model performance information
 - Decision-support interpretation
 
-## Project Structure
+### Live Demo
+
+👉 **[Healthcare Diabetes DSS](https://healthcare-diabetes-dss-cd9m4afdhd5vzjnpxzn8mp.streamlit.app/)**
+
+## 📁 Project Structure
 
 ```text
 healthcare-diabetes-dss/
@@ -109,51 +134,5 @@ healthcare-diabetes-dss/
 ├── feature_names.pkl
 ├── requirements.txt
 └── README.md
-```
 
-## Installation
 
-Clone the repository:
-
-```bash
-git clone https://github.com/YOUR-USERNAME/healthcare-diabetes-dss.git
-cd healthcare-diabetes-dss
-```
-
-Install the required packages:
-
-```bash
-pip install -r requirements.txt
-```
-
-## Run the Application
-
-```bash
-streamlit run app.py
-```
-
-The application will open in your browser.
-
-## Requirements
-
-- Python
-- Streamlit
-- CatBoost
-- Scikit-learn
-- Pandas
-- NumPy
-- Joblib
-
-## Important Note
-
-This project is an academic prototype for machine learning and healthcare decision-support research.
-
-It is NOT a medical diagnosis system and should not be used as a substitute for professional medical advice, diagnosis, or treatment.
-
-## Author
-
-Sangram Dey
-
-M.Tech in Artificial Intelligence and Data Science
-
-Alliance University, Bangalore, India
